@@ -130,4 +130,4 @@ if __name__ == '__main__':
     chromosome1.rand_init()
     chromosome2 = Chromosome([[0, 34], [0, 3]], npcSize, len(prevPopPool[0][0].scenario[0]))
     chromosome2.rand_init()
-    checkIfRemutataion('GaCheckpoints', chromosome1, chromosome2)
+    checkIfRemutation('GaCheckpoints', chromosome1, chromosome2)
