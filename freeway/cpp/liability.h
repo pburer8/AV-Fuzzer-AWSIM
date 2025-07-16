@@ -1,0 +1,11 @@
+#ifndef LIABILITY_INCLUDE
+#define LIABILITY_INCLUDE
+
+//bool isHitEdge(??? ego, ??? sim, float init_degree);
+//bool isHitYellowLine(??? ego, ??? sim, float init_degree);
+//bool isCrossedLine(??? ego, ??? sim, float init_degree);
+//void debugPos(??? ego, ??? npc);
+//float findDistance(??? ego, ??? npc);
+//bool isEgoFault(??? ego, ??? npc, ??? sim, float init_degree);
+
+#endif
