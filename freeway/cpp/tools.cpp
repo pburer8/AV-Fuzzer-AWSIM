@@ -1,5 +1,7 @@
 #include <tools.h>
 #include <cmath>
+#include "npcstruct.h"
+#include <vector>
 
 float getSimilarityBetweenNpcs(std::vector<Npc> npc1, std::vector<Npc> npc2)
 {
