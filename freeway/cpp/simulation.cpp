@@ -2,6 +2,8 @@
 #include <cmath>
 #include "rclcpp/rclcpp.hpp"
 #include "geometry_msgs/msg/pose_stamped.hpp"
+#include <yaml-cpp/yaml.h>
+#include "liability.h"
 
 class AuAwSimulation
 {
@@ -81,7 +83,7 @@ float AuAwSimulation::brakeDist(float speed)
 /*
 void AuAwSimulation::findCollisionDeltaD(??? npc)
 {
-    Find the (d) distance between self ego and npc, subtract the length of a car 
+    d = findDistance(npc);
     return d - brakeDist(ego.speed);
 }*/
 
