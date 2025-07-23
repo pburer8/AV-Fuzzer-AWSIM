@@ -4,6 +4,7 @@
 #include <iostream>
 #include <fstream>
 
+
 /*
 bool isHitEdge(??? sim, float init_degree)
 {
@@ -149,7 +150,7 @@ bool isEgoFault(??? ego, ??? npc, ??? sim, float init_degree)
     {
         return;
     }
-        
+
     float npc_x = (Take npc x coordinate)
     float npc_y = (Take npc y coordinate)
     float npc_z = (Take npc z coordinate)
