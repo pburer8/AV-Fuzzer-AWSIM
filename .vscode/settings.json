@@ -1,5 +1,6 @@
 {
     "files.associations": {
         "iosfwd": "cpp"
-    }
+    },
+    "cmake.sourceDirectory": "/home/mburer/AV-Fuzzer-AWSIM/src/egoposesub"
 }
