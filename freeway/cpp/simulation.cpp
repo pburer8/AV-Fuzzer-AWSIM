@@ -1,14 +1,15 @@
 #include <string>
 #include <cmath>
+#include "rclcpp/rclcpp.hpp"
+#include "geometry_msgs/msg/pose_stamped.hpp"
 
 class AuAwSimulation
 {
     public:
         int totalSimTime;
-        std::string bridgeLogPath;
         //??? sim;
         //??? ego;
-        //??? initEvPos;
+        geometry_msgs::msg::PoseStamped initEvPos;
         //std::vector<???> npcList;
         bool isEgoFault;
         bool isHit;
@@ -25,6 +26,27 @@ class AuAwSimulation
         //float findDeltaD(??? npc);
         //float findFitness(std::vector<std::vector<int>> deltaDlist, std::vector<std::vector<int>> dList, bool egoFault, bool hit, int hitTime);
         //void runSimulation(??? scenarioObj);
+
+        AuAwSimulation()
+        {
+            totalSimTime = 0;
+            initEvPos.header.stamp = rclcpp::Clock().now();
+            initEvPos.header.frame_id = "nishishinjuku";
+
+            initEvPos.pose.position.x = 81377.359;
+            initEvPos.pose.position.y = 49916.910;
+            initEvPos.pose.position.z = 41.171;
+
+            initEvPos.pose.orientation.x = 0.001;
+            initEvPos.pose.orientation.y = -0.007;
+            initEvPos.pose.orientation.z = 0.300;
+            initEvPos.pose.orientation.w = 0.954;
+
+            isEgoFault = false;
+            isHit = false;
+            maxInt = 130;
+            egoFaultDeltaD = 0;
+        }
 };
 
 /*
