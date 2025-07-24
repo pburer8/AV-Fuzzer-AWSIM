@@ -2,3 +2,4 @@ build/
 install/
 log/
 ego_pose.yaml
+map.bin

@@ -9,11 +9,14 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(lanelet2 REQUIRED)
+find_package(lanelet2_core REQUIRED)
+find_package(lanelet2_io REQUIRED)
 find_package(autoware_map_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
 
+
 add_executable(nearest_lane src/nearest_lane.cpp)
-ament_target_dependencies(nearest_lane rclcpp autoware_map_msgs)
+ament_target_dependencies(nearest_lane rclcpp autoware_map_msgs lanelet2_core lanelet2_io)
 install(TARGETS
   nearest_lane
   DESTINATION lib/${PROJECT_NAME}

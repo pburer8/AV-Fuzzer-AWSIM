@@ -4,6 +4,12 @@
 #include <iostream>
 #include <fstream>
 
+#include <lanelet2_core/LaneletMap.h>
+#include <lanelet2_core/primitives/Point.h>
+#include <lanelet2_core/geometry/Lanelet.h>
+#include <lanelet2_io/Io.h>
+#include <lanelet2_io/io_handlers/Serialize.h>
+
 
 /*
 bool isHitEdge(??? sim, float init_degree)
@@ -229,4 +235,23 @@ std::vector<float> orientation()
     }
 
     return;
+}
+
+void findNearestLanelet()
+{
+    lanelet::GPSPoint gpsPoint;
+
+    gpsPoint.lat = 81377.359;
+    gpsPoint.lon = 49916.910;
+    gpsPoint.ele = 41.171;
+    lanelet::Origin origin(gpsPoint);
+    lanelet::LaneletMapPtr laneletMap = lanelet::load("map.bin", origin);
+    
+    std::vector<float> ego_pose = pose();
+
+    lanelet::BasicPoint2d point(ego_pose[0], ego_pose[1]);
+    double searchRadius = 10.0;
+
+    auto nearestLanelets = lanelet::geometry::findNearest(laneletMap->laneletLayer, point, 1);
+
 }
