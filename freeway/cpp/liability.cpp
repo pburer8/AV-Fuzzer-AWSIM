@@ -237,7 +237,7 @@ std::vector<float> orientation()
     return;
 }
 
-void findNearestLanelet()
+std::vector<std::pair<double, lanelet::Lanelet>> findNearestLanelet()
 {
     lanelet::GPSPoint gpsPoint;
 
@@ -253,5 +253,7 @@ void findNearestLanelet()
     double searchRadius = 10.0;
 
     auto nearestLanelets = lanelet::geometry::findNearest(laneletMap->laneletLayer, point, 1);
+
+    return nearestLanelets;
 
 }
