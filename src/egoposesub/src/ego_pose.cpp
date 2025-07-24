@@ -16,6 +16,7 @@ public:
     subscription_ =this->create_subscription<geometry_msgs::msg::PoseStamped>("localization/pose_estimator/pose", 10, std::bind(&PoseSubscriber::pose_callback, this, std::placeholders::_1));
     
     std::ofstream init_file("ego_pose.yaml", std::ios::out | std::ios::trunc);
+
     if (!init_file.is_open()) {
       RCLCPP_ERROR(this->get_logger(), "Failed to create ego_pose.yaml in current directory.");
       rclcpp::shutdown();
@@ -23,6 +24,7 @@ public:
     }
     init_file << "# Ego pose data written by pose_estimator_subscriber\nposes:\n";
     init_file.close();
+    
     RCLCPP_INFO(this->get_logger(), "Initialized ego_pose.yaml in current directory.");
   }
 

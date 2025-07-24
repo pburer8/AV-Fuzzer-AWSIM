@@ -31,9 +31,6 @@ class LaneletSubscriber : public rclcpp::Node
 
             outputFile.write(reinterpret_cast<const char*>(msg->data.data()), msg->data.size());
             outputFile.close();
-
-            
-
         }
 
     rclcpp::Subscription<autoware_map_msgs::msg::LaneletMapBin>::SharedPtr subscription_;
