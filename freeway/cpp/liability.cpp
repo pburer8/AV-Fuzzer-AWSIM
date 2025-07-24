@@ -11,11 +11,14 @@
 #include <lanelet2_io/io_handlers/Serialize.h>
 
 
-/*
-bool isHitEdge(??? sim, float init_degree)
+
+bool isHitEdge(float init_degree)
 {
 
-    ??? lane_center = (Take ego position, find closest lane)
+    std::vector<std::pair<double, lanelet::Lanelet>> nearest_lane = findNearestLanelet();
+
+    lanelet::ConstLineString3d leftBound = nearest_lane[0].second.leftBound();
+    lanelet::ConstLineString3d rightBound = nearest_lane[0].second.rightBound();
 
     std::vector<float> ego_pose = pose();
 
@@ -24,9 +27,7 @@ bool isHitEdge(??? sim, float init_degree)
         return;
     }
 
-    float mp_x = lane_center x coordinate
-    float mp_y = lane_center y coordinate
-    float mp_z = lane_center z coordinate
+    
 
     //https://autowarefoundation.github.io/autoware-documentation/main/design/autoware-interfaces/components/vehicle-dimensions/#vehicle_length
     //float diagonal_length = sqrt(pow(length (x), 2), pow(width (y), 2));
@@ -44,8 +45,10 @@ bool isHitEdge(??? sim, float init_degree)
     //float ego_size_y = (diagonal_length / 2.0)* sin(radians(rotate_degree));
 
     //Calculate if the size of the car extends outside of the lane boundaries. If so, return True. Otherwise return False
+
+    return false;
 }
-*/
+
 
 
 /*
@@ -84,23 +87,39 @@ bool isHitYellowLine(??? ego, ??? sim, float init_degree)
 */
 
 
-/*
-bool isCrossedLine(??? ego, ??? sim, float init_degree)
+
+bool isCrossedLine(float init_degree)
 {
-    https://autowarefoundation.github.io/autoware-documentation/main/design/autoware-interfaces/components/localization/#vehicle-pose
+    std::vector<std::pair<double, lanelet::Lanelet>> nearest_lane = findNearestLanelet();
 
-    ??? lane_center = (Take ego position, find closest lane)
+    lanelet::ConstLineString3d leftBound = nearest_lane[0].second.leftBound();
+    lanelet::ConstLineString3d rightBound = nearest_lane[0].second.rightBound();
 
-    float right_y = lane_center.position.y - 2.34
-    float left_y = lane_center.position.y + 2.34
+    std::vector<float> ego_pose = pose();
 
-    https://autowarefoundation.github.io/autoware-documentation/main/design/autoware-interfaces/components/localization/#vehicle-pose
-    float rotate_degree = abs(ego z rotation - init_degree) + 23.86;
-    float ego_size_y = (diagonal_length / 2.0)* sin(radians(rotate_degree));
+    if (ego_pose.size() != 3)
+    {
+        return;
+    }
 
-    Calculate if the size of the car extends over the lines. If so, return True. Otherwise return False
+    std::vector<float> ego_rot = orientation();
+
+    if (ego_rot.size() != 4)
+    {
+        return;
+    }
+
+    //https://autowarefoundation.github.io/autoware-documentation/main/design/autoware-interfaces/components/vehicle-dimensions/#vehicle_length
+    //float diagonal_length = sqrt(pow(length (x), 2), pow(width (y), 2));
+
+    float rotate_degree = abs(ego_rot[2] - init_degree) + 23.86;
+    //float ego_size_y = (diagonal_length / 2.0)* sin(radians(rotate_degree));
+
+    //Calculate if the size of the car extends over the lines. If so, return True. Otherwise return False
+
+    return false;
 }
-*/
+
 
 
 void debugPos(std::vector<float> ego_pose = pose(), std::vector<float> ego_rot = orientation())
